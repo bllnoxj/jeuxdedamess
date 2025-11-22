@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Dames - Règles Complètes</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Jeu de Dames</h1>
+        
+        <div class="controls-top">
+            <div class="control-group">
+                <label for="difficulte">Difficulté:</label>
+                <select id="difficulte" onchange="changerDifficulte()">
+                    <option value="1">Facile</option>
+                    <option value="2" selected>Normal</option>
+                    <option value="3">Difficile</option>
+                </select>
+            </div>
+            <div class="timer">⏱️ <span id="timer">00:00</span></div>
+        </div>
+        
+        <div class="info">
+            <div class="joueur-1">
+                Vous (●)<br>
+                Pièces: <span id="pieces-joueur">12</span><br>
+                Dames: <span id="dames-joueur">0</span>
+            </div>
+            <div class="joueur-2">
+                IA (○)<br>
+                Pièces: <span id="pieces-ia">12</span><br>
+                Dames: <span id="dames-ia">0</span>
+            </div>
+        </div>
+
+        <div id="plateau" class="plateau"></div>
+
+        <div class="controls">
+            <button class="btn-reset" onclick="reinitialiserJeu()">Nouvelle Partie</button>
+            <button class="btn-undo" onclick="annulerCoup()">Annuler</button>
+            <button class="btn-regles" onclick="afficherRegles()">📋 Règles</button>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <!-- Modal pour les règles -->
+    <div id="modal-regles" class="modal">
+        <div class="modal-content">
+            <h2>📖 Règles du Jeu de Dames</h2>
+
+            <h3>🎯 But du Jeu</h3>
+            <p>Capturer tous les pions de l'adversaire ou le bloquer pour qu'il ne puisse plus bouger.</p>
+
+            <h3>🎮 Matériel</h3>
+            <ul>
+                <li>Plateau de 64 cases (8×8)</li>
+                <li>On joue uniquement sur les cases noires</li>
+                <li>Chaque joueur a 12 pions</li>
+            </ul>
+
+            <h3>🧩 Mise en place</h3>
+            <ul>
+                <li>Les pions sont placés sur les trois premières rangées de chaque joueur</li>
+                <li>Toujours sur les cases noires</li>
+            </ul>
+
+            <h3>▶️ Déplacement des pions</h3>
+            <ul>
+                <li>Un pion avance en diagonale</li>
+                <li>Il se déplace d'une seule case</li>
+                <li>Il va uniquement vers l'avant (vers le camp adverse)</li>
+            </ul>
+
+            <h3>🔥 Manger un pion</h3>
+            <ul>
+                <li>Si l'adversaire a un pion sur une case diagonale à côté de toi</li>
+                <li>Et qu'il y a une case vide juste derrière</li>
+                <li>Tu sautes par-dessus et tu prends son pion</li>
+                <li><strong>⚠️ Si tu peux manger, tu es obligé de manger.</strong></li>
+            </ul>
+
+            <h3>👑 La Dame</h3>
+            <p>Quand un pion atteint la dernière ligne, il devient une Dame.</p>
+            <p><strong>La Dame peut :</strong></p>
+            <ul>
+                <li>Avancer ET reculer</li>
+                <li>Se déplacer en diagonale sur plusieurs cases d'un coup</li>
+                <li>Manger en avançant ET en reculant</li>
+            </ul>
+
+            <h3>🏆 Fin de partie</h3>
+            <p>Tu gagnes si :</p>
+            <ul>
+                <li>Ton adversaire n'a plus de pions</li>
+                <li>Ou il ne peut plus bouger</li>
+            </ul>
+
+            <h3>💡 Conseils de stratégie</h3>
+            <ul>
+                <li>Protège tes pions arrière, ce sont tes défenses</li>
+                <li>Essaie de créer une dame au plus vite</li>
+                <li>Les dames sont très puissantes : utilise-les avec sagesse</li>
+                <li>Ne sacrifice pas tes pions sans raison</li>
+            </ul>
+
+            <button class="close-btn" onclick="fermerRegles()">Fermer</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
